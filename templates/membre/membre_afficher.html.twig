@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Membres{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#id_membre</th>
+      <th scope="col">Pseudo</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Email</th>
+      <th scope="col">Civilite</th>
+      <th scope="col">Statut</th>
+      <th scope="col">Date_enregistrement</th>
+      <th scope="col">Actions</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <th scope="row">1</th>
+        <td></td>
+       
+
+    </tr>
+  </tbody>
+</table>
+
+ {{ form_start(formMembre)}}
+
+ <div class="col-md-10 mx-auto">
+        {{ form_row(formMembre.pseudo) }}
+    </div>
+<div class="col-md-10 mx-auto">
+        {{ form_row(formMembre.mdp) }}
+    </div>
+
+    <div class="col-md-10 mx-auto">
+        {{ form_row(formMembre.nom) }}
+    </div>
+
+    <div class="col-md-10 mx-auto">
+        {{ form_row(formMembre.prenom) }}
+    </div>
+
+    <div class="col-md-10 mx-auto">
+        {{ form_row(formMembre.email) }}
+    </div>
+
+    <div class="col-md-10 mx-auto">
+        {{ form_row(formMembre.civilite) }}
+    </div>
+    <div class="col-md-10 mx-auto">
+        {{ form_row(formMembre.statut) }}
+    </div>
+    <div class="col-md-10 mx-auto">
+        {{ form_row(formMembre.date_enregistrement) }}
+    </div>
+
+    <div class="row justify-content-center">
+        <input type="submit" class="btn btn-success mt-3 col-md-6" value="Ajouter">
+    </div>
+</div>
+
+{{ form_end(formMembre)}}
+   {% endblock %}
+
+   
