@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Membres{% endblock %}
+{% block title %} {{ parent()}} Membres{% endblock %}
 
 {% block body %}
 
+
 <div class="container">
+{% if membres %}
     <table class="table">
   <thead>
     <tr>
@@ -22,14 +24,41 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td></td>
-       
+  {% for membre in membres %}
+            <tr>
+                <td>{{ membre.id }}</td>
+                <td>{{ membre.pseudo }}</td>
+                <td>{{ membre.nom }}</td>
+                <td>{{ membre.prenom }}</td>
+                <td>{{ membre.email }}</td>
+                <td>{{ membre.civilite }}</td>
+                <td>{{ membre.statut }}</td>
+                
+                
 
-    </tr>
+
+{# 
+            <td>
+                <a href="{{ path("category_modifier", {"id" : membre.id})}}" >
+                    <img src="{{ asset("images/update.png")}}" alt="icône de modification" style="width:2rem">
+                </a>
+            </td>
+
+            <td>
+                <a href="" >
+                    <img src="{{ asset("images/delete.png")}}" alt="icône de suppression" style="width:2rem">
+                </a>
+            </td> #}
+
+            </tr>
+
+            {% endfor %}
+   
+    
   </tbody>
 </table>
+
+{% endif %}
 
  {{ form_start(formMembre)}}
 

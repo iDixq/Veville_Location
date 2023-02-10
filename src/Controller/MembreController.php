@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MembreController extends AbstractController
 {
 
-    #[Route('/membre', name: 'membre')]
+    #[Route('/membre', name: 'membre_afficher')]
     public function afficher_ajouter_membre(MembreRepository $repoMembre, Request $request, EntityManagerInterface $manager): Response
     {
         $membres = $repoMembre->findAll();
@@ -33,7 +33,7 @@ class MembreController extends AbstractController
         return $this->render('membre/membre_afficher.html.twig', [
             'controller_name' => 'MembreController',
             "formMembre" => $form->createView(),
-            "membre" => $membres,
+            "membres" => $membres,
         ]);
         return $this->redirectToRoute("membre_afficher");
     }
