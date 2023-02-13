@@ -1,20 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AgenceController!{% endblock %}
+{% block title %} Agence {% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% if agences %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Agence</th>
+      <th scope="col">Titre</th>
+      <th scope="col">Adresse</th>
+      <th scope="col">Ville</th>
+      <th scope="col">CP</th>
+      <th scope="col">Description</th>
+      <th scope="col">Photo</th>
+      <th scope="col">Actions</th>
+    </tr>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+  </thead>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/Symfony/VV/Veville_location/src/Controller/AgenceController.php'|file_link(0) }}">src/Controller/AgenceController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/Symfony/VV/Veville_location/templates/agence/index.html.twig'|file_link(0) }}">templates/agence/index.html.twig</a></code></li>
-    </ul>
-</div>
+  <tbody>
+
+  {% for agence in agences %}
+
+    <tr>
+      <td>{{ agence.id }}</td>
+      <td>{{ agence.titre }}</td>
+      <td>{{ agence.adresse }}</td>
+      <td>{{ agence.ville }}</td>
+      <td>{{ agence.cp }}</td>
+      <td>{{ agence.description }}</td>
+      <td> 
+      <img src="{{ agence.photo }}" alt="" width=150 height=100>
+      </td>
+      <td class="w-25">
+      <a href="{{ path('update_agence', {'id' : agence.id} ) }}">
+      <img src="{{ asset('images/update.png')}}" alt="modif" width=35></a>
+
+       <a href="{{ path('detail_agence', {'id' : agence.id} ) }}">
+      <img src="{{ asset('images/details.png')}}" alt="modif" width=35></a>
+
+      <a href="{{ path('delete_agence', {'id' : agence.id} ) }}">
+      <img src="{{ asset('images/delete.png')}}" alt="modif" width=35></a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endif %}
+  {{ form_start(formAgence) }}
+    <div class="col-md-10 mx-auto">
+        {{ form_row(formAgence) }}
+    </div>
+    
+    {# <div class="row justify-content-center">
+        <input type="submit" class="btn btn-success mt-3 col-md-6" value="Ajouter">
+    </div> #}
+
+    {{ form_end(formAgence) }}
 {% endblock %}
