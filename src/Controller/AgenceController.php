@@ -42,4 +42,52 @@ class AgenceController extends AbstractController
         ]);
     }
 
+     /**
+     * @Route("/agence/update/{id}", name="update_agence")
+     */
+    public function update(Agence $agence, Request $request, EntityManagerInterface $manager)
+    {
+        $form = $this->createForm(AgenceType::class, $agence);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($agence);
+            $manager->flush();
+    
+            $this->addFlash('success', "l'agence N" . $agence->getId() ."a bien été modifiée");
+
+            return $this->redirectToRoute("app_agence");
+        }
+
+        return $this->render("agence/update_agence.html.twig", [
+            "formAgence" => $form->createView(),
+            "agence" => $agence
+        ]);
+    }
+    
+      /**
+     * @Route("/agence/supprimer/{id}", name="delete_agence")
+     */
+    public function delete(Agence $agence, EntityManagerInterface $manager)
+    {
+        $manager->remove($agence);
+        $manager->flush();
+
+        $this->addFlash('success',"l'agence" . $agence->getId() . "a bien été supprimer");
+        return $this->redirectToRoute("app_agence");
+    }
+
+        /**
+     * @Route("/agence/detail/{id}", name="detail_agence")
+     */
+    public function detail(Agence $agence, EntityManagerInterface $manager, AgenceRepository $repoAgence, $id)
+    {
+        $agence = $repoAgence->find($id);
+
+        return $this->render('agence/detail_agence.html.twig', [
+            "agence" => $agence,
+        ]);
+        return $this->redirectToRoute("detail_agence");
+    }
 }

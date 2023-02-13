@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ parent()}} Agence | Update{% endblock %}
+{% block body %}
+
+<div class="row justify-content-end">
+    <a class="btn btn-info p-2 col-md-3" href="{{ path('app_agence') }}">Retour</a>
+</div>
+
+<div class="col_md-4 mx-auto">
+
+{{ form_start(formAgence) }}
+
+    <div class="col-md-10 mx-auto">
+
+{{ form_row(formAgence) }}
+    </div>
+
+    {{ form_end(formAgence) }}
+
+</div>
+
+{% endblock %}

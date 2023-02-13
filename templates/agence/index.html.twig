@@ -30,8 +30,19 @@
       <td>{{ agence.ville }}</td>
       <td>{{ agence.cp }}</td>
       <td>{{ agence.description }}</td>
-      <td>{{ agence.photo }}</td>
-      <td></td>
+      <td> 
+      <img src="{{ agence.photo }}" alt="" width=150 height=100>
+      </td>
+      <td class="w-25">
+      <a href="{{ path('update_agence', {'id' : agence.id} ) }}">
+      <img src="{{ asset('images/update.png')}}" alt="modif" width=35></a>
+
+       <a href="{{ path('detail_agence', {'id' : agence.id} ) }}">
+      <img src="{{ asset('images/details.png')}}" alt="modif" width=35></a>
+
+      <a href="{{ path('delete_agence', {'id' : agence.id} ) }}">
+      <img src="{{ asset('images/delete.png')}}" alt="modif" width=35></a>
+      </td>
     </tr>
     {% endfor %}
   </tbody>

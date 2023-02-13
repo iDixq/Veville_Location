@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Agence;
+use phpDocumentor\Reflection\PseudoTypes\False_;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -19,7 +20,7 @@ class AgenceType extends AbstractType
         $builder
             ->add('titre', TextType::class, [
                 "label" => "Titre",
-                "required" => true,
+                "required" => false,
                 "attr" => [
                     "placeholder" => "titre",
                     "class" => "form-control"
@@ -27,7 +28,7 @@ class AgenceType extends AbstractType
             ]) 
             ->add('adresse', TextType::class,[
                 "label" => "Adresse",
-                "required" => true,
+                "required" => false,
                 "attr" => [
                     "placeholder" => "adresse",
                     "class" => "form-control"
@@ -35,7 +36,7 @@ class AgenceType extends AbstractType
             ])
             ->add('ville', TextType::class,[
                 "label" => "Ville",
-                "required" => true,
+                "required" => false,
                 "attr" => [
                     "placeholder" => "ville",
                     "class" => "form-control"
@@ -43,7 +44,7 @@ class AgenceType extends AbstractType
             ])
             ->add('cp', NumberType::class,[
                 "label" => "Code-postal",
-                "required" => true,
+                "required" => false,
                 "attr" => [
                     "placeholder" => "cp",
                     "class" => "form-control"
@@ -51,7 +52,7 @@ class AgenceType extends AbstractType
             ])
             ->add('description', TextareaType::class,[
                 "label" => "Description",
-                "required" => true,
+                "required" => false,
                 "attr" => [
                     "placeholder" => "description",
                     "class" => "form-control"
@@ -59,7 +60,7 @@ class AgenceType extends AbstractType
             ])
             ->add('photo', TextType::class,[
                 "label" => "Photo",
-                "required" => true,
+                "required" => false,
                 "attr" => [
                     "placeholder" => "photo",
                     "class" => "form-control"
