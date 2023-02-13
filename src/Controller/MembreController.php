@@ -36,5 +36,66 @@ class MembreController extends AbstractController
             "membres" => $membres,
         ]);
         return $this->redirectToRoute("membre_afficher");
+
     }
+
+    /**
+    * @Route("/membre/update/{id}", name="membre_update")
+    */
+    public function update(Membre $membre, Request $request, EntityManagerInterface $manager)
+    {
+        $form = $this->createForm(MembreType::class, $membre);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($membre);
+            $manager->flush();
+
+            $this->addFlash('success', "l'agence N" . $membre->getId() ."a bien été modifiée");
+
+            return $this->redirectToRoute("membre_update'");
+        }
+
+        return $this->render("membre/membre_update.html.twig", [
+            "formMembre" => $form->createView(),
+            "membre" => $membre,
+        ]);
+    }
+
+    /**
+    * @Route("/membre/delete/{id}", name="membre_delete")
+    */
+    public function membre_delete(Membre $membre, EntityManagerInterface $manager){
+
+        $manager->remove($membre);
+        $manager->flush();
+
+        $this->addFlash("Success", "Le membre N°". $membre->getId() . " a bien été supprimé");
+        return $this->redirectToRoute('membre_afficher');
+
+    }
+
+     /**
+    * @Route("/membre/details/{id}", name="membre_details")
+    */
+    public function membre_details(Membre $membre, EntityManagerInterface $manager, MembreRepository $repoMembre, $id){
+
+        $membre = $repoMembre->find($id);
+
+        return $this->render('membre/membre_details.html.twig', [
+            'controller_name' => 'MembreController',
+            "membre" => $membre,
+        ]);
+        return $this->redirectToRoute("membre_details");
+
+
+    }
+
+
+
+
+
+
+
 }

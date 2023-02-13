@@ -1,13 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {{ parent()}} Membres{% endblock %}
+{% block title %} {{ parent()}} Membres | Details{% endblock %}
 
 {% block body %}
 
-
 <div class="container">
-{% if membres %}
-    <table class="table">
+
+ <table class="table">
   <thead>
     <tr>
 
@@ -24,7 +23,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for membre in membres %}
+  
             <tr>
                 <td>{{ membre.id }}</td>
                 <td>{{ membre.pseudo }}</td>
@@ -59,51 +58,12 @@
 
             </tr>
 
-            {% endfor %}
+           
    
     
   </tbody>
 </table>
-
-{% endif %}
-
- {{ form_start(formMembre)}}
-
- <div class="col-md-10 mx-auto">
-        {{ form_row(formMembre.pseudo) }}
-    </div>
-<div class="col-md-10 mx-auto">
-        {{ form_row(formMembre.mdp) }}
-    </div>
-
-    <div class="col-md-10 mx-auto">
-        {{ form_row(formMembre.nom) }}
-    </div>
-
-    <div class="col-md-10 mx-auto">
-        {{ form_row(formMembre.prenom) }}
-    </div>
-
-    <div class="col-md-10 mx-auto">
-        {{ form_row(formMembre.email) }}
-    </div>
-
-    <div class="col-md-10 mx-auto">
-        {{ form_row(formMembre.civilite) }}
-    </div>
-    <div class="col-md-10 mx-auto">
-        {{ form_row(formMembre.statut) }}
-    </div>
-    <div class="col-md-10 mx-auto">
-        {{ form_row(formMembre.date_enregistrement) }}
-    </div>
-
-    <div class="row justify-content-center">
-        <input type="submit" class="btn btn-success mt-3 col-md-6" value="Ajouter">
-    </div>
 </div>
 
-{{ form_end(formMembre)}}
-   {% endblock %}
 
-   
+{% endblock %}
