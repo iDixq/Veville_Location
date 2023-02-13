@@ -38,6 +38,10 @@ class Membre
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_enregistrement = null;
 
+    // public function __construct(){
+    //     $this->date_enregistrement = new \DateTimeMutable();
+    // }
+
     public function getId(): ?int
     {
         return $this->id;
