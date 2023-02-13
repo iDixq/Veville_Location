@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Membre;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -58,20 +59,23 @@ class MembreType extends AbstractType
                     "class" => "form-control"
                 ]
             ])
-            ->add('civilite', TextType::class, [
+            ->add('civilite', ChoiceType::class, [
                 "label" => "Civilite",
                 "required" => true,
-                "attr" => [
-                    "placeholder" => "Civilite",
-                    "class" => "form-control"
+                'choices'  => [
+                    'Homme' => "homme",
+                    'Femme' => "femme",
+                    
                 ]
+                
             ])
-            ->add('statut', NumberType::class, [
+            ->add('statut', ChoiceType::class, [
                 "label" => "Statut",
                 "required" => true,
-                "attr" => [
-                    "placeholder" => "Statut",
-                    "class" => "form-control"
+                'choices'  => [
+                    'user' => "0",
+                    'admin' => "1",
+                    
                 ]
 
             ])
