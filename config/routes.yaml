@@ -1,9 +1,3 @@
 controllers:
-<<<<<<< HEAD
   resource: ../src/Controller/
   type: attribute
-=======
-    resource: ../src/Controller/
-    type: attribute
-
->>>>>>> 787844d9a05f317f9d1351c2dd8631b45de8fa59
