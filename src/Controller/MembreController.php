@@ -10,20 +10,31 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class MembreController extends AbstractController
 {
 
     #[Route('/membre', name: 'membre_afficher')]
-    public function afficher_ajouter_membre(MembreRepository $repoMembre, Request $request, EntityManagerInterface $manager): Response
+    public function afficher_ajouter_membre(MembreRepository $repoMembre, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $passwordHasher): Response
     {
-        $membres = $repoMembre->findAll();
         $objet_membre = new Membre;
+        $membres = $repoMembre->findAll();
+        
 
         $form = $this->createForm(MembreType::class, $objet_membre);
         $form->handleRequest($request);
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            // $hashedPassword = $passwordHasher->hashPassword(
+            //     $objet_membre,
+            //     $request->get("membre")["mdp"]
+            // );
+        
+            // $objet_membre->setPassword($hashedPassword);
+            // $repoMembre->save($objet_membre, true);
             $manager->persist($objet_membre);
             $manager->flush();
 

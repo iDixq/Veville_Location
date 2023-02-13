@@ -75,7 +75,6 @@ class MembreType extends AbstractType
                 'choices'  => [
                     'user' => "0",
                     'admin' => "1",
-                    
                 ]
 
             ])
