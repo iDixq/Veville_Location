@@ -33,7 +33,7 @@
                 <td>{{ membre.email }}</td>
                 <td>{{ membre.civilite }}</td>
                 <td>{{ membre.statut }}</td>
-                {# <td>{{ membre.date_enregistrement}}</td> #}
+                <td>{{ membre.dateEnregistrement|date("Y-m-dH:i: s")}}</td>
             
                 {# {{ path("category_modifier", {"id" : membre.id})}} #}
 
@@ -92,9 +92,7 @@
     <div class="col-md-10 mx-auto">
         {{ form_row(formMembre.statut) }}
     </div>
-    <div class="col-md-10 mx-auto">
-        {{ form_row(formMembre.date_enregistrement) }}
-    </div>
+
 
     <div class="row justify-content-center">
         <input type="submit" class="btn btn-success mt-3 col-md-6" value="Ajouter">

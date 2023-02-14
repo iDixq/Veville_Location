@@ -35,6 +35,7 @@ class MembreController extends AbstractController
         
             // $objet_membre->setPassword($hashedPassword);
             // $repoMembre->save($objet_membre, true);
+            $objet_membre->setDateEnregistrement(new \DateTime());
             $manager->persist($objet_membre);
             $manager->flush();
 
@@ -65,7 +66,7 @@ class MembreController extends AbstractController
 
             $this->addFlash('success', "l'agence N" . $membre->getId() ."a bien été modifiée");
 
-            return $this->redirectToRoute("membre_update'");
+            return $this->redirectToRoute("membre_afficher");
         }
 
         return $this->render("membre/membre_update.html.twig", [
