@@ -1,42 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
+{% block title %}Hello ContactController!
+{% endblock %}
 
 {% block body %}
 
-{% if contact %}
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col">Email</th>
-      <th scope="col">Message</th>
-   
-    </tr>
+	{{ form_start(formContact) }}
+	<div class="col-md-10 mx-auto">
+		{{ form_row(formContact) }}
+	</div>
 
-  </thead>
-
-  <tbody>
-
-  {% for contact in contact %}
-
-    <tr>
-      <td>{{ contact.id }}</td>
-      <td>{{ contact.email }}</td>
-      <td>{{ contact.message }}</td>
-    
-      
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-{% endif %}
-  {{ form_start(formContact) }}
-    <div class="col-md-10 mx-auto">
-        {{ form_row(formContact) }}
-    </div>
-
-    {{ form_end(formContact) }}
+	{{ form_end(formContact) }}
 
 {% endblock %}
