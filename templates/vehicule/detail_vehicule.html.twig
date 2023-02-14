@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ parent()}} Vehicule | Detail{% endblock %}
+
+{% block body %}
+
+<div class="row justify-content-end">
+    <a class="btn btn-info p-2 col-md-3" href="{{ path('app_vehicule') }}">Retour</a>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+    <th scope="col">Vehicule</th>
+      <th scope="col">Agence</th>
+      <th scope="col">Titre</th>
+      <th scope="col">Marque</th>
+      <th scope="col">Modele</th>
+      <th scope="col">Description</th>
+      <th scope="col">Photo</th>
+      <th scope="col">Prix</th>
+     
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+    <tr>
+      <td>{{ vehicule.id }}</td>
+      <td>{{ vehicule.idAgence.ville }}</td>
+      <td>{{ vehicule.titre }}</td>
+      <td>{{ vehicule.marque }}</td>
+      <td>{{ vehicule.modele }}</td>
+      <td>{{ vehicule.description }}</td>
+      <td> 
+      <img src="{{ vehicule.photo }}" alt="" width=150 height=100>
+      </td>
+      <td>{{ vehicule.prixJournalier }}</td>
+   
+    </tr>
+  </tbody>
+</table>
+
+
+{% endblock %}
