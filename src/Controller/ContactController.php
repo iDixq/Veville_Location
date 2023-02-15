@@ -36,6 +36,7 @@ class ContactController extends AbstractController
             "contact" => $contact,
             'formContact' => $form->createView()
         ]);
+        return $this->redirectToRoute("afficher_message");
     }
 
     /**
@@ -48,6 +49,7 @@ class ContactController extends AbstractController
         return $this->render('contact/message.html.twig', [
             "contacts" => $contacts,
         ]);
+        return $this->redirectToRoute("afficher_message");
     }
 
     /**
