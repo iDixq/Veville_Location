@@ -3,11 +3,7 @@
 {% block title %} Vehicule {% endblock %}
 
 {% block body %}
-{% if vehicule.idAgence.ville == null %}
-    <h1>Il n'y a pas d'agences liées pour le moment</h1>
-{% endif %}
 
-{% if vehicules %}
 <table class="table">
   <thead>
     <tr>
@@ -27,7 +23,7 @@
   <tbody>
  
   {% for vehicule in vehicules %}
-
+  {% if vehicule.idAgence %}
     <tr>
       <td>{{ vehicule.id }}</td>
       <td>{{ vehicule.idAgence.ville }}</td>
@@ -50,12 +46,13 @@
       <img src="{{ asset('images/delete.png')}}" alt="modif" width=35></a>
       </td> 
     </tr>
+    {% endif %}
     {% endfor %}
   </tbody>
 </table>
 
 
-{% endif %}
+
   {{ form_start(formVehicule) }}
     <div class="col-md-10 mx-auto">
         {{ form_row(formVehicule) }}
