@@ -3,6 +3,10 @@
 {% block title %} Vehicule {% endblock %}
 
 {% block body %}
+{% if vehicule.idAgence.ville == null %}
+    <h1>Il n'y a pas d'agences liées pour le moment</h1>
+{% endif %}
+
 {% if vehicules %}
 <table class="table">
   <thead>
@@ -32,7 +36,7 @@
       <td>{{ vehicule.modele}}</td>
       <td>{{ vehicule.description }}</td>
       <td> 
-      <img src="{{ vehicule.photo }}" alt="" width=150 height=100>
+      <img src="{{ vehicule.photo }}" alt="photoVehicule" width=150 height=100>
       </td>
       <td>{{ vehicule.prixJournalier }}</td>
       <td class="w-25">
@@ -49,6 +53,7 @@
     {% endfor %}
   </tbody>
 </table>
+
 
 {% endif %}
   {{ form_start(formVehicule) }}
