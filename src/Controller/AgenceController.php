@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AgenceController extends AbstractController
 {
     /**
-     * @Route("/agence", name="app_agence")
+     * @Route("/admin/agence", name="app_agence")
      */
     public function index(AgenceRepository $repoAgence, Request $request, EntityManagerInterface $manager): Response
     {
@@ -43,7 +43,7 @@ class AgenceController extends AbstractController
     }
 
      /**
-     * @Route("/agence/update/{id}", name="update_agence")
+     * @Route("/admin/agence/update/{id}", name="update_agence")
      */
     public function update(Agence $agence, Request $request, EntityManagerInterface $manager)
     {
@@ -67,7 +67,7 @@ class AgenceController extends AbstractController
     }
 
     /**
-     * @Route("/agence/supprimer/{id}", name="delete_agence")
+     * @Route("/admin/agence/supprimer/{id}", name="delete_agence")
      */
     public function delete(Agence $agence, EntityManagerInterface $manager)
     {
@@ -79,7 +79,7 @@ class AgenceController extends AbstractController
     }
 
         /**
-     * @Route("/agence/detail/{id}", name="detail_agence")
+     * @Route("/admin/agence/detail/{id}", name="detail_agence")
      */
     public function detail(Agence $agence, EntityManagerInterface $manager, AgenceRepository $repoAgence, $id)
     {

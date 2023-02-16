@@ -7,6 +7,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
+        {% if app.user %}
+          {% if app.user.roles[0] == "ROLE_ADMIN" %}
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ path('app_agence')}}">Agence</a>
           </li>
@@ -16,29 +18,39 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ path("app_vehicule")}}">vehicule</a>
           </li>
-            <li class="nav-item">
-            <a class="nav-link" href="{{ path("app_contact")}}">Contact</a>
-          </li>
            <li class="nav-item">
             <a class="nav-link" href="{{ path("afficher_message")}}">Messages</a>
           </li>
-          <AmpContent>
-          <li><a class="nav-link" href="{{ path('app_list') }}">View List</a></li>
-          <li><a class="nav-link" href="{{ path('app_logout') }}">Logout</a></li>
-          
-  </AmpContent>
-  
-  <NonAmpContent>
-  
-          <li><a class="nav-link" href="{{ path('app_login') }}">Login</a></li>
-          <li>
-            <a class="nav-link" href="{{ path('app_registration') }}">Register</a>
+        {% endif %}
+          {% else %}
+            <li class="nav-item">
+            <a class="nav-link" href="{{ path("app_contact")}}">Contact</a>
           </li>
+          {% endif %}
+        
+          <AmpContent>
+           {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+        {% else %}
+        
+          <li class="nav-item"><a class="nav-link" href="{{ path('app_login') }}">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ path('registration') }}">Register</a></li>
+         
+          {% endif %}
+      </ul>
+      </div>
+      </AmpContent>
+  
+        <NonAmpContent>
+ 
           
-  </NonAmpContent>
+          
+       </NonAmpContent>
        
-      </nav>
-        </ul>
+     
+        
       </div>
     </div>
   </nav>

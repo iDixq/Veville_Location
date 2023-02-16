@@ -15,7 +15,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class MembreController extends AbstractController
 {
 
-    #[Route('/membre', name: 'membre_afficher')]
+    #[Route('/admin/membre', name: 'membre_afficher')]
     public function afficher_ajouter_membre(MembreRepository $repoMembre, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $passwordHasher): Response
     {
         $objet_membre = new Membre;
@@ -52,7 +52,7 @@ class MembreController extends AbstractController
     }
 
     /**
-    * @Route("/membre/update/{id}", name="membre_update")
+    * @Route("/admin/membre/update/{id}", name="membre_update")
     */
     public function update(Membre $membre, Request $request, EntityManagerInterface $manager)
     {
@@ -76,7 +76,7 @@ class MembreController extends AbstractController
     }
 
     /**
-    * @Route("/membre/delete/{id}", name="membre_delete")
+    * @Route("/admin/membre/delete/{id}", name="membre_delete")
     */
     public function membre_delete(Membre $membre, EntityManagerInterface $manager){
 
@@ -89,7 +89,7 @@ class MembreController extends AbstractController
     }
 
      /**
-    * @Route("/membre/details/{id}", name="membre_details")
+    * @Route("/admin/membre/details/{id}", name="membre_details")
     */
     public function membre_details(Membre $membre, EntityManagerInterface $manager, MembreRepository $repoMembre, $id){
 

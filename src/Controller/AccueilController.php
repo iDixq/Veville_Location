@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AccueilController extends AbstractController
 {
-    #[Route('/accueil', name: 'app_accueil')]
+    #[Route('/', name: 'app_accueil')]
     public function accueilAfficher(CommandeRepository $repoCommande, Request $request, EntityManagerInterface $manager): Response
     {
 

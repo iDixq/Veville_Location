@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class VehiculeController extends AbstractController
 {  
     /**
-     * @Route("/vehicule", name="app_vehicule")
+     * @Route("/admin/vehicule", name="app_vehicule")
      */
     public function index(VehiculeRepository $repoVehicule, Request $request, EntityManagerInterface $manager): Response
     {
@@ -43,7 +43,7 @@ class VehiculeController extends AbstractController
     }
 
      /**
-     * @Route("/vehicule/update/{id}", name="update_vehicule")
+     * @Route("/admin/vehicule/update/{id}", name="update_vehicule")
      */
     public function update(Vehicule $vehicule, Request $request, EntityManagerInterface $manager)
     {
@@ -67,7 +67,7 @@ class VehiculeController extends AbstractController
     }
 
     /**
-     * @Route("/vehicule/supprimer/{id}", name="delete_vehicule")
+     * @Route("/admin/vehicule/supprimer/{id}", name="delete_vehicule")
      */
     public function delete(Vehicule $vehicule, EntityManagerInterface $manager)
     {
@@ -79,7 +79,7 @@ class VehiculeController extends AbstractController
     }
 
         /**
-     * @Route("/vehicule/detail/{id}", name="detail_vehicule")
+     * @Route("/admin/vehicule/detail/{id}", name="detail_vehicule")
      */
     public function detail(vehicule $vehicule, EntityManagerInterface $manager, VehiculeRepository $repoVehicule, $id)
     {
