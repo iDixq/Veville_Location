@@ -9,11 +9,22 @@
 </style>
 
 <div class="container">
-
+    {# {{dump(agences)}} #}
     <img src="{{ asset("images/accueil.jpg")}}" alt="accueil" width="1300" height="650">
-    
-        {{ form_start(formAccueil) }}
-        {{ form_end(formAccueil) }}
+    <form method="post">
+    <label for="agence">Nom de l'agence :</label>
+    {# {{dump(agences)}} #}
+    <select name="ag" id="agId">
+    <option value=""></option>
+    {# {{ for value in agences }} #}
+    {# <option value="{{ value.id }}">{{ value.titre }}</option> #}
+    {# {{ endfor }} #}
+    </select>
+
+
+
+    </form>
+        
     
 </div>
 

@@ -9,6 +9,7 @@
         <ul class="navbar-nav">
         {% if app.user %}
           {% if app.user.roles[0] == "ROLE_ADMIN" %}
+          
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ path('app_agence')}}">Agence</a>
           </li>
@@ -30,6 +31,9 @@
         
           <AmpContent>
            {% if app.user %}
+           <li class="nav-item">
+            <a class="nav-link" href="{{ path("app_contact")}}">Contact</a>
+          </li>
         <div class="mb-3">
             You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
@@ -39,6 +43,7 @@
           <li class="nav-item"><a class="nav-link" href="{{ path('registration') }}">Register</a></li>
          
           {% endif %}
+          
       </ul>
       </div>
       </AmpContent>
