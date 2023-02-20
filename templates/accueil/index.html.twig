@@ -13,21 +13,14 @@
     <img src="{{ asset("images/accueil.jpg")}}" alt="accueil" width="1300" height="650">
     <form method="post">
     <label for="agence">Nom de l'agence :</label>
-    {# {{dump(agences)}} #}
+    {{dump(agences)}}
     <select name="ag" id="agId">
     <option value=""></option>
-    {# {{ for value in agences }} #}
-    {# <option value="{{ value.id }}">{{ value.titre }}</option> #}
-    {# {{ endfor }} #}
+    {# {{ for value in agences }}
+    <option value="{{ value.idAgence.id }}">{{ value.idAgence.titre }}</option>
+    {{ endfor }} #}
     </select>
-
-
-
     </form>
         
-    
 </div>
-
-
-
 {% endblock %}
