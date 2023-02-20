@@ -7,37 +7,95 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Commande;
 use App\Form\AccueilType;
+use App\Repository\AgenceRepository;
 use App\Repository\CommandeRepository;
+use App\Repository\VehiculeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class AccueilController extends AbstractController
 {
     #[Route('/', name: 'app_accueil')]
-    public function accueilAfficher(CommandeRepository $repoCommande, Request $request, EntityManagerInterface $manager): Response
+    public function accueilAfficher(VehiculeRepository $repoVehicule, AgenceRepository $repoAgence, Request $request, EntityManagerInterface $manager): Response
     {
 
-        $objetAccueil = new Commande;
-        $form = $this->createForm(AccueilType::class, $objetAccueil);
-        $form->handlerequest($request);
-        $commandes = $repoCommande->findAll();
+        $v = $repoVehicule->getAllVehicule();
+        $agence = $repoAgence->findAll();
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($request->isMethod('post')) {
+            // dd($request);
+            $agences = $repoAgence->findAll();
 
-            $objetAccueil->setDateEnregistrement(new \DateTime());
-            $manager->persist($objetAccueil);
-            $manager->flush();
+            $idAgence = $request->request->get('ag');
+            //    dd($agence);
+
+            $v = $repoVehicule->getIdAgence($idAgence);
+
+            $start = \DateTime::createFromFormat('Y-m-d\TH:i', $request->request->get('timeDebut'));
+            $end = \DateTime::createFromFormat('Y-m-d\TH:i', $request->request->get('timeFin'));
+
+            $intervalle = $start->diff($end);
+
+            // $start = $commande->gej();
+            // $end =  $commande->getEnd();
+            // $diff = $start->diff($end);
+            // $commande->setTotal( ($diff));
+
+            // dd($intervalle);
+            return $this->render(
+                'accueil/index.html.twig',
+
+                [
+                    'filterVehicule' => true,
+                    'controller_name' => 'AccueilController',
+                    "v" => $v,
+                    "agences" => $agences,
+                    'day' => $intervalle->days,
+                    'start' => $start->format('y-m-d H:i:s'),
+                    'end' => $end->format('y-m-d H:i:s'),
+
+                ]
+            );
         }
 
         return $this->render('accueil/index.html.twig', [
+            'filterVehicule' => false,
             'controller_name' => 'AccueilController',
-            "formAccueil" => $form->createview(),
-            "dataAccueil" => $objetAccueil
-
+            "v" => $v,
+            "agences" => $agence,
         ]);
-
-        return $this->redirectToRoute("app_accueil");
     }
+
+
+
+
+
+
+
+
+    // $objetAccueil = new Commande;
+    // $form = $this->createForm(AccueilType::class, $objetAccueil);
+    // $form->handlerequest($request);
+    // $commandes = $repoCommande->findAll();
+
+    // if ($form->isSubmitted() && $form->isValid()) {
+
+    //     $objetAccueil->setDateEnregistrement(new \DateTime());
+    //     $manager->persist($objetAccueil);
+    //     $manager->flush();
+    // }
+
+    // return $this->render('accueil/index.html.twig', [
+    //     'controller_name' => 'AccueilController',
+    // "formAccueil" => $form->createview(),
+    // "dataAccueil" => $objetAccueil
+
+    // ]);
+
+    // return $this->redirectToRoute("app_accueil");
+
+
+
 
     // #[Route('/membre', name: 'membre_afficher')]
     // public function afficher_ajouter_membre(MembreRepository $repoMembre, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $passwordHasher): Response
